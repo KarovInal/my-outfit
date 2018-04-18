@@ -1,0 +1,37 @@
+{
+  "name": "my-outfit",
+  "version": "1.0.0",
+  "description": "Социальная сеть, где можно делиться стоимостью своей одежды и луками.",
+  "main": "index.js",
+  "author": "ikarov",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "lodash": "^4.17.5",
+    "parcel-bundler": "^1.7.0",
+    "redux-logger": "^3.0.6"
+  },
+  "dependencies": {
+    "antd": "^3.4.1",
+    "components": "^0.1.0",
+    "express": "^4.16.3",
+    "react": ">= 0.14.0 < 17.0.0-0",
+    "react-dom": "^16.3.1",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1",
+    "styled-components": "^3.2.5"
+  }
+}
