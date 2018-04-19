@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "ikarov",
   "license": "MIT",
+  "scripts": {
+    "start": "yarn parcel ./static/index.html -p 8080",
+    "build": "parcel build ./static/index.html -d ./build"
+  },
   "devDependencies": {
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",

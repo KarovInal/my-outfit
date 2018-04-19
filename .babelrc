@@ -19,11 +19,13 @@
       "root": ["./src"],
       "alias": {
         "Components": "./src/components",
-        "Const":      "./src/constants",
+        "Store":      "./src/store",
+        "Constants":  "./src/constants",
         "Ducks":      "./src/ducks",
         "Data":       "./src/data",
         "Libs":       "./src/libs",
-        "Pages":      "./src/pages"
+        "Pages":      "./src/pages",
+        "Layouts":    "./src/layouts"
       }
     }]
   ]
