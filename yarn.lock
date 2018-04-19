@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+Layout@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/Layout/-/Layout-0.0.1.tgz#796d49e122735493c376c7616046fdcf5ccfc777"
+  dependencies:
+    angular "^1.4.7"
+    angular-ui-router "^0.2.15"
+    font-awesome "^4.4.0"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -33,6 +41,16 @@ ajv@^4.9.1:
 alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
+
+angular-ui-router@^0.2.15:
+  version "0.2.18"
+  resolved "https://registry.yarnpkg.com/angular-ui-router/-/angular-ui-router-0.2.18.tgz#1dad70415c73d7046fd2e130df03d62fb7464360"
+  dependencies:
+    angular "^1.0.8"
+
+angular@^1.0.8, angular@^1.4.7:
+  version "1.6.10"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.10.tgz#eed3080a34d29d0f681ff119b18ce294e3f74826"
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -1939,6 +1957,10 @@ find-up@^2.1.0:
 flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
+
+font-awesome@^4.4.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
 
 for-in@^1.0.2:
   version "1.0.2"

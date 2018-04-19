@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import UploadPage from 'Pages/upload-page';
 
 import Header from 'Layouts/header';
+import Layout from 'Layouts/layout';
 
 import { UPLOAD_PAGE } from 'Constants/routes';
 
@@ -19,7 +20,9 @@ class App extends Component {
         <Router>
           <div>
             <Header />
-            <Route exact path={ UPLOAD_PAGE } component={ UploadPage } />
+            <Layout>
+              <Route exact path={ UPLOAD_PAGE } component={ UploadPage } />
+            </Layout>
           </div>
         </Router>
       </Provider>

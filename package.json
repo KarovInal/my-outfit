@@ -25,6 +25,7 @@
     "redux-logger": "^3.0.6"
   },
   "dependencies": {
+    "Layout": "^0.0.1",
     "antd": "^3.4.1",
     "components": "^0.1.0",
     "express": "^4.16.3",
