@@ -23,7 +23,7 @@
         "Constants":  "./src/constants",
         "Ducks":      "./src/ducks",
         "Data":       "./src/data",
-        "Libs":       "./src/libs",
+        "Utils":       "./src/utils",
         "Pages":      "./src/pages",
         "Layouts":    "./src/layouts"
       }

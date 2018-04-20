@@ -6,8 +6,8 @@ import rootReducer from 'Ducks/root';
 const store = createStore(
   rootReducer,
   applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleWare
+    loggerMiddleWare,
+    thunkMiddleware
   )
 );
 
