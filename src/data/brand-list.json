@@ -1,0 +1,17 @@
+{
+  "apple": {
+    "id": "apple",
+    "label": "Apple",
+    "logo": "https://casebig.nethouse.ru/static/img/0000/0004/4248/44248087.lsp724cs95.W215.png"
+  },
+  "polo ralph lauren": {
+    "id": "polo ralph lauren",
+    "label": "POLO RALPH LAUREN",
+    "logo": "http://intoto7.co.uk/wp-content/uploads/2016/10/polo-ralph-lauren-logo-vector-copy.png"
+  },
+  "nike": {
+    "id": "nike",
+    "label": "Nike",
+    "logo": "https://officialpsds.com/imageview/rw/yj/rwyjmq_large.png?1521316515s"
+  }
+}

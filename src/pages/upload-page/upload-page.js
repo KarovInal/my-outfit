@@ -4,11 +4,14 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import { Row, Col } from 'antd';
-import { map } from 'lodash';
+import { map, get } from 'lodash';
+import random from 'Utils/random';
 
-import { addPointer, getPointersAddedPhoto } from 'Ducks/added-photo';
+import { addPointer, getPointersAddedPhoto, setCurrentPointerAdd, getCurrentPointerAdd} from 'Ducks/added-photo';
 
 import UploadPhoto from 'Components/upload-photo';
+import AddingPhotoModal from 'Components/adding-photo-modal';
+import PointerWithEdit from 'Components/pointer-with-edit';
 
 import Content from 'Layouts/content';
 
@@ -16,6 +19,8 @@ const PhotoContainer = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  cursor: pointer;
+  background-color: #ccc;
 `;
 
 const PhotoWrapSquare = styled.div`
@@ -25,7 +30,6 @@ const PhotoWrapSquare = styled.div`
 `;
 
 const PhotoWrap = styled.div`
-  background-color: #f2f3f4;
   bottom: 0;
   display: block;
   left: 0;
@@ -45,32 +49,16 @@ const Photo = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  transform: rotate(90deg);
-`;
-
-const Pointer1 = styled.div`
-  margin-top: -16px;
-  background-color: black;
-  height: 20px;
-  width: 20px;
-`;
-
-const Pointer2 = styled.div`
-  position: absolute;
-  left: ${props => props.x + '%'};
-  top: ${props => props.y + '%'};
-  margin-top: -16px;
-  background-color: black;
-  height: 20px;
-  width: 20px;
 `;
 
 const dispatchToProps = dispatch => bindActionCreators({
-  addPointer
+  addPointer,
+  setCurrentPointerAdd
 }, dispatch);
 
 const stateToProps = createStructuredSelector({
-  pointersPhoto: getPointersAddedPhoto
+  pointersPhoto: getPointersAddedPhoto,
+  currentPointerAdd: getCurrentPointerAdd
 })
 
 @connect(stateToProps, dispatchToProps)
@@ -91,27 +79,47 @@ class UploadPage extends Component {
 
     const x = (xCor / this.preview.offsetWidth) * 100;
     const y = (yCor / this.preview.offsetHeight) * 100;
-    this.props.addPointer(x, y);
+    const pointerID = random();
+
+    this.props.addPointer(x, y, pointerID);
+    this.props.setCurrentPointerAdd(pointerID);
   }
 
   renderPointers = () => {
     const { pointersPhoto } = this.props;
+
     return map(pointersPhoto, pointer => {
       return (
-        <Pointer2
-          key = { pointer.ID }
-          x   = { pointer.coordinates.x }
-          y   = { pointer.coordinates.y }
+        <PointerWithEdit
+          key     = { pointer.ID }
+          ID      = { pointer.ID }
+          x       = { pointer.coordinates.x }
+          y       = { pointer.coordinates.y }
         />
       )
     });
   }
 
   render() {
+    const { currentPointerAdd } = this.props;
+
+    const currentPointerAddID = get(currentPointerAdd, 'ID');
+
+    console.log('currentPointerAdd', currentPointerAdd);
+
     return (
       <Content style={{ paddingTop: '10px' }}>
         <Row type="flex" align="middle" justify="center">
           <Col span={8} align="center" justify="center">
+            <AddingPhotoModal
+              isVisible={!!currentPointerAdd}
+              ID={currentPointerAddID}
+              initialValues={{
+                label: 'Куртка Nike',
+                price: 6123,
+                brand: 'nike'
+              }}
+            />
             <UploadPhoto onUpload={this.handleUpload} />
           </Col>
         </Row>
