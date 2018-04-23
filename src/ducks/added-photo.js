@@ -1,7 +1,9 @@
 import { get } from 'lodash';
+import removeObjectKey from 'Utils/remove-object-key';
 
 /* Types */
 export const ADD_POINTER = 'ADD_POINTER';
+export const REMOVE_POINTER = 'REMOVE_POINTER';
 export const EDIT_DATA_POINTER = 'EDIT_DATA_POINTER';
 export const REMOVE_EDIT_POINTER = 'REMOVE_EDIT_POINTER';
 export const SET_CURRENT_POINTER = 'SET_CURRENT_POINTER';
@@ -53,10 +55,19 @@ export const getCurrentPointerEdit = state => {
   }
 };
 
+export const getCurrentPointer = state => {
+  const currentPointer = get(state, 'addedPhoto.currentPointer', {});
+  const currentPointerID = get(currentPointer, 'ID', '');
+  const pointObject = get(state, ['addedPhoto', 'pointers', currentPointerID]);
+
+  return pointObject;
+}
+
 /* Reducer */
 
 const addedPhotoReducer = (state = defaultState, action) => {
   const { type, payload } = action;
+
   switch(type) {
     case ADD_POINTER:
       return {
@@ -83,6 +94,11 @@ const addedPhotoReducer = (state = defaultState, action) => {
             ...payload.data
           }
         }
+      }
+    case REMOVE_POINTER:
+      return {
+        ...state,
+        pointers: removeObjectKey(state.pointers, payload.pointerID)
       }
     case SET_CURRENT_POINTER:
       return {
@@ -113,6 +129,15 @@ export const addPointer = (x, y, pointerID) => {
         x,
         y
       }
+    }
+  }
+}
+
+export const removePointer = pointerID => {
+  return {
+    type: REMOVE_POINTER,
+    payload: {
+      pointerID
     }
   }
 }

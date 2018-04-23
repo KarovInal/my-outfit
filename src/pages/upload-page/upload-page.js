@@ -7,11 +7,18 @@ import { Row, Col } from 'antd';
 import { map, get } from 'lodash';
 import random from 'Utils/random';
 
-import { addPointer, getPointersAddedPhoto, setCurrentPointerAdd, getCurrentPointerAdd} from 'Ducks/added-photo';
+import {
+  addPointer,
+  getPointersAddedPhoto,
+  setCurrentPointerAdd,
+  getCurrentPointerAdd,
+  getCurrentPointerEdit
+} from 'Ducks/added-photo';
 
 import UploadPhoto from 'Components/upload-photo';
 import AddingPhotoModal from 'Components/adding-photo-modal';
 import PointerWithEdit from 'Components/pointer-with-edit';
+import EditControls from 'Components/edit-controls';
 
 import Content from 'Layouts/content';
 
@@ -58,7 +65,8 @@ const dispatchToProps = dispatch => bindActionCreators({
 
 const stateToProps = createStructuredSelector({
   pointersPhoto: getPointersAddedPhoto,
-  currentPointerAdd: getCurrentPointerAdd
+  currentPointerAdd: getCurrentPointerAdd,
+  currentPointerEdit: getCurrentPointerEdit
 })
 
 @connect(stateToProps, dispatchToProps)
@@ -101,11 +109,10 @@ class UploadPage extends Component {
   }
 
   render() {
-    const { currentPointerAdd } = this.props;
+    const { currentPointerAdd, currentPointerEdit } = this.props;
 
     const currentPointerAddID = get(currentPointerAdd, 'ID');
-
-    console.log('currentPointerAdd', currentPointerAdd);
+    const currentPointerEditID = get(currentPointerEdit, 'ID');
 
     return (
       <Content style={{ paddingTop: '10px' }}>
@@ -133,6 +140,7 @@ class UploadPage extends Component {
             </PhotoWrapSquare>
           </PhotoContainer>
         </Row>
+        <EditControls isVisible={!!currentPointerEdit} ID={ currentPointerEditID } />
       </Content>
     )
   }

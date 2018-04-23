@@ -9,14 +9,15 @@ import styled from 'styled-components';
 
 import Pointer from 'Components/pointer';
 
-import { getCurrentPointerEdit, setCurrentPointerEdit} from 'Ducks/added-photo';
+import { getCurrentPointerEdit, setCurrentPointerEdit, editDataPoint } from 'Ducks/added-photo';
 
 const stateToProps = createStructuredSelector({
   pointerObject: getCurrentPointerEdit
 });
 
 const dispatchToProps = dispatch => bindActionCreators({
-  setCurrentPointerEdit
+  setCurrentPointerEdit,
+  editDataPoint
 }, dispatch);
 
 @connect(stateToProps, dispatchToProps)
@@ -37,7 +38,8 @@ class PointerWithEdit extends Component {
       defaultPosition: {
         x: this.state.xDraggable,
         y: this.state.yDraggable,
-      }
+      },
+      onStop: this.handleDraggableStop
     }
   }
 
@@ -56,6 +58,23 @@ class PointerWithEdit extends Component {
     if(!pointerObject || pointerObject.ID !== ID) {
       setCurrentPointerEdit(ID);
     }
+  }
+
+  handleDraggableStop = (e, value) => {
+    let { x, y, node: { offsetParent } } = value;
+    let { ID, editDataPoint } = this.props;
+
+    x = ((x + 6) / offsetParent.offsetWidth) * 100;
+    y = ((y + 6) / offsetParent.offsetHeight) * 100;
+
+    console.log(x, y)
+
+    editDataPoint(ID, {
+      coordinates: {
+        x,
+        y
+      }
+    })
   }
 
   checkEditPointer = () => {

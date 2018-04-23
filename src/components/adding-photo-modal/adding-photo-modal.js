@@ -5,10 +5,9 @@ import { connect } from 'react-redux';
 import { map } from 'lodash';
 import { Form, Input, InputNumber, Select, Modal, Button } from "antd";
 
-import { removeCurrentPointer, editDataPoint } from 'Ducks/added-photo';
+import { removeCurrentPointer, editDataPoint, removePointer } from 'Ducks/added-photo';
 
 import brandList from 'Data/brand-list';
-import rouble from './img/rouble.png';
 
 const FormItem = Form.Item;
 const confirm = Modal.confirm;
@@ -30,7 +29,8 @@ const stateToProps = () => ({});
 
 const dispatchToProps = dispatch => bindActionCreators({
   removeCurrentPointer,
-  editDataPoint
+  editDataPoint,
+  removePointer
 }, dispatch);
 
 @Form.create()
@@ -41,9 +41,9 @@ class AddingPhotoModal extends Component {
 
     this.props.form.validateFields((err, values) => {
       if(!err) {
-        const { ID } = this.props;
+        const { ID, editDataPoint } = this.props;
 
-        this.props.editDataPoint(ID, values);
+        editDataPoint(ID, values);
         this.doCancel();
       }
     });
@@ -51,16 +51,23 @@ class AddingPhotoModal extends Component {
 
   handleCancel = e => {
     confirm({
-      title: 'Вы хотите закрыть добавление вещи?',
+      title: 'Вы действительно хотите удалить точку?',
       okType: 'danger',
       okText: 'Да',
       cancelText: 'Нет',
-      onOk: () => this.doCancel()
+      onOk: () => this.doRemovePointer()
     });
   };
 
   doCancel = e => {
     this.props.removeCurrentPointer();
+  }
+
+  doRemovePointer = () => {
+    const { ID, removePointer} = this.props;
+
+    this.doCancel();
+    removePointer(ID);
   }
 
   validatePrice = (rule, value, callback) => {
