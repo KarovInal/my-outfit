@@ -21,6 +21,7 @@ class App extends Component {
           <div>
             <Header />
             <Layout>
+              <Route exact path="/" component={ UploadPage } />
               <Route exact path={ UPLOAD_PAGE } component={ UploadPage } />
             </Layout>
           </div>
