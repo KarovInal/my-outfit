@@ -22,15 +22,19 @@ const dispatchToProps = dispatch => bindActionCreators({
 
 @connect(stateToProps, dispatchToProps)
 class PointerWithEdit extends Component {
+  static propTypes = {
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+    ID: PropTypes.number.isRequired
+  }
+
   state = {
     xDraggable: 0,
     yDraggable: 0
   };
 
-  static propTypes = {
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    ID: PropTypes.number.isRequired
+  componentDidMount() {
+    this.changePointerPosition()
   }
 
   get draggableProps() {
@@ -43,7 +47,7 @@ class PointerWithEdit extends Component {
     }
   }
 
-  handlePointerClick = e => {
+  changePointerPosition = () => {
     const { ID, setCurrentPointerEdit, pointerObject, x, y } = this.props;
     const node = findDOMNode(this);
 
@@ -54,6 +58,12 @@ class PointerWithEdit extends Component {
       xDraggable,
       yDraggable
     })
+  }
+
+  handlePointerClick = e => {
+    const { ID, setCurrentPointerEdit, pointerObject } = this.props;
+
+    this.changePointerPosition();
 
     if(!pointerObject || pointerObject.ID !== ID) {
       setCurrentPointerEdit(ID);

@@ -84,10 +84,10 @@ class EditControls extends Component {
     return isVisible && (
       <EditControlsWrap>
         <Row type="flex" justify="center" style={{ height: '100%' }}>
-          <Col span={3}>
+          <Col xs={6} sm={4}>
             <ControlIcon src={trashImg} onClick={ this.handleRemoveButton } />
           </Col>
-          <Col span={3}>
+          <Col xs={6} sm={4}>
             <ControlIcon src={viewImg} onClick={this.handleViewButtonOk} />
             <ViewPointer
               onCancel={this.handleViewButtonCancel}
@@ -95,7 +95,7 @@ class EditControls extends Component {
               pointerData={currentPointerEdit}
             />
           </Col>
-          <Col span={3}>
+          <Col xs={6} sm={4}>
             <ControlIcon src={editImg} onClick={this.handleDisplayEdit}/>
             <EditPhotoModal
               ID={ID}
@@ -108,7 +108,7 @@ class EditControls extends Component {
               visible={this.state.isVisibleEdit}
             />
           </Col>
-          <Col span={3}>
+          <Col xs={6} sm={4}>
             <ControlIcon src={closeImg} onClick={this.handleCloseEdit}/>
           </Col>
         </Row>

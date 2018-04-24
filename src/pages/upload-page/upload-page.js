@@ -19,6 +19,7 @@ import UploadPhoto from 'Components/upload-photo';
 import AddingPhotoModal from 'Components/adding-photo-modal';
 import PointerWithEdit from 'Components/pointer-with-edit';
 import EditControls from 'Components/edit-controls';
+import PointerList from 'Components/pointer-list';
 
 import Content from 'Layouts/content';
 
@@ -58,16 +59,17 @@ const Photo = styled.div`
   background-repeat: no-repeat;
 `;
 
-const dispatchToProps = dispatch => bindActionCreators({
-  addPointer,
-  setCurrentPointerAdd
-}, dispatch);
-
 const stateToProps = createStructuredSelector({
   pointersPhoto: getPointersAddedPhoto,
   currentPointerAdd: getCurrentPointerAdd,
   currentPointerEdit: getCurrentPointerEdit
 })
+
+const dispatchToProps = dispatch => bindActionCreators({
+  addPointer,
+  setCurrentPointerAdd
+}, dispatch);
+
 
 @connect(stateToProps, dispatchToProps)
 class UploadPage extends Component {
@@ -109,7 +111,7 @@ class UploadPage extends Component {
   }
 
   render() {
-    const { currentPointerAdd, currentPointerEdit } = this.props;
+    const { currentPointerAdd, currentPointerEdit, pointersPhoto } = this.props;
 
     const currentPointerAddID = get(currentPointerAdd, 'ID');
     const currentPointerEditID = get(currentPointerEdit, 'ID');
@@ -139,6 +141,11 @@ class UploadPage extends Component {
               </PhotoWrap>
             </PhotoWrapSquare>
           </PhotoContainer>
+        </Row>
+        <Row type="flex" align="middle" justify="center">
+          <Col xs={24} sm={18} md={14} align="center" justify="center">
+            <PointerList pointers={pointersPhoto}/>
+          </Col>
         </Row>
         <EditControls isVisible={!!currentPointerEdit} ID={ currentPointerEditID } />
       </Content>
