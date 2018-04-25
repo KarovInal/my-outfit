@@ -66,10 +66,10 @@ class EditPhotoModal extends Component {
     const { visible, onCancel, initialValues } = this.props;
     const { getFieldDecorator } = this.props.form;
 
-    return (
+    return visible && (
       <Modal
         title="Изменить поля"
-        visible={visible}
+        visible
         onCancel={onCancel}
         footer={null}
       >
